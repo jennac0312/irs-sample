@@ -19,8 +19,7 @@ def getBridgeLength():
                        "How many jumps would you like to attempt? " +
                        Style.RESET_ALL)
   # check if input is a number between 1-5
-#   while bridgeLength not in ['1', '2', '3', '4', '5']:
-#   while bridgeLength not in range(1,21):
+
   while bridgeLength not in [ f"{num}" for num in range(1,21)]:
     bridgeLength = input(Fore.BLUE +
                         #  "Please enter a number between 1 and 5: " +
@@ -32,7 +31,6 @@ def getBridgeLength():
         Style.RESET_ALL)
   return int(bridgeLength)  # return as number
 
-
 # purpose: to determine the success probability based on chosen bridge length.
 def showSuccessProbability(bridgeLength):
   # calculate percentage
@@ -40,7 +38,6 @@ def showSuccessProbability(bridgeLength):
   # display probability
   print(Fore.RED + 'You have a ' + str(probability) + '% chance of success' +
         Style.RESET_ALL)
-
 
 # purpose: prompt Player to choose a path (left or right)
 def getPlayerJump():
@@ -58,7 +55,6 @@ def getPlayerJump():
   print('You have chosen to jump ' + path + '. Good Luck!')
   return path
 
-
 # purpose: generates a random success path for the bridge.
 def generateSuccessPath(bridgeLength):
   successPath = []
@@ -67,7 +63,6 @@ def generateSuccessPath(bridgeLength):
     successPath.append(randint(0, 1))  # take random number, add to array
   print('SUCCESS PATH: ', successPath)  # uncomment to cheat and show success path
   return successPath
-
 
 # purpose: generate a single row of the bridge based on player's progress.
 def getOneBridgeRow(playerPath, round):
@@ -80,7 +75,6 @@ def getOneBridgeRow(playerPath, round):
   # if player is at or beyond the current round and jumped right
   else:
     return '_ *'
-
 
 # purpose: display entire bridge with the player's progress up to current round
 def displayBridge(bridgeLength, playerPath, round):
@@ -101,7 +95,6 @@ def displayBridge(bridgeLength, playerPath, round):
   print(Back.WHITE + Fore.BLACK + "FINISH" + Style.RESET_ALL)
   print()  # add space
 
-
 # purpose: tracks the player's chosen path for each jump
 def trackPlayerPath(path, playerPath):
   # convert path(l/r) to 0/1
@@ -110,12 +103,10 @@ def trackPlayerPath(path, playerPath):
   playerPath.append(path)
   return playerPath
 
-
 # purpose: checks if player's jump matches the successful path
 def checkJump(playerPath, successPath, round):
   # check if player jumps on safe panel (true/false)
   return playerPath[round] == successPath[round]
-
 
 # purpose: asks Player if they want to see the successful path
 # displays solution if requested
@@ -132,7 +123,6 @@ def showSuccessPath(bridgeLength, successPath, round):
     print()  # add space
     print(Fore.LIGHTGREEN_EX + "Successful Path:" + Style.RESET_ALL)
     displayBridge(bridgeLength, successPath, round)
-
 
 # purpose: gameplay loop and control the flow of the game
 # prompt player, track progress, check jumps, end game
